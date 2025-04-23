@@ -1,0 +1,110 @@
+/* DISC test specific styles */
+.disc-traits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.trait-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.trait-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.question-group {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #fefefe;
+}
+
+.question-group h3 {
+    margin-top: 0;
+    color: #3498db;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.question {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.question.invalid {
+    background-color: #ffebee;
+    border: 1px solid #f44336;
+}
+
+.question-text {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.options label {
+    margin-right: 15px;
+}
+
+#results {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: none;
+}
+
+.result-section {
+    margin-bottom: 20px;
+}
+
+.result-section h3 {
+    color: #3498db;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.disc-graph {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.graph-bar {
+    width: 80px;
+    text-align: center;
+}
+
+.bar {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 0;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+    font-size: 0.8em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.bar-label {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.D { background-color: #e74c3c; }
+.I { background-color: #f39c12; }
+.S { background-color: #2ecc71; }
+.C { background-color: #3498db; }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Test DISC - Evaluación de Personalidad</title>
+    <link rel="stylesheet" href="/disc-test/css/disc.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test DISC</h1>
+        <p style="text-align:center; margin-top:-10px;">Evaluación de Rasgos de Personalidad</p>
+        <div class="intro-box">
+            <p>Los Rasgos de personalidad medidos por el Test DISC son:</p>
+            <div class="disc-traits">
+                <div class="trait-card D">
+                    <div class="trait-title">Dominancia (D)</div>
+                    <div>Seguridad en sí mismo | competitivo | individualista | desafiante | orientado a metas | crítico e
+                        impaciente con otros.</div>
+                </div>
+                <div class="trait-card I">
+                    <div class="trait-title">Influencia (I)</div>
+                    <div>Extrovertido | generalmente hábil socialmente | disfruta las reuniones y relacionarse con las personas |
+                        optimista.</div>
+                </div>
+                <div class="trait-card S">
+                    <div class="trait-title">Estabilidad (S)</div>
+                    <div>Paciente | Dispuesto a ayudar a otros | Puede lidiar con la rutina, el trabajo detallado | controlado |
+                        calmado.</div>
+                </div>
+                <div class="trait-card C">
+                    <div class="trait-title">Concienzudez (C)</div>
+                    <div>Adaptable | evita tomar riesgos | cuidadoso | diplomático | se atiene a reglas y regulaciones.</div>
+                </div>
+            </div>
+            <p><strong>Instrucciones:</strong> Para cada grupo de 4 afirmaciones, seleccione la que MÁS se aplica a usted y la
+                que MENOS se aplica.</p>
+            <p><em>Recuerde no existen respuestas "correctas" o "incorrectas" - se le pide que elija las respuestas que MÁS LE
+                    GUSTAN y aquellas que MENOS LE GUSTAN.</em></p>
+        </div>
+        <form id="disc-form">
+            <label for="participant-name"><strong>Nombre del participante:</strong></label>
+            <input id="participant-name" name="participant-name" placeholder="Escribe tu nombre (primero y luego apellido)"
+                required="" type="text" />
+            <div id="questions-container"></div>
+            <div id="error-message" class="error-message"></div>
+            <button id="calculate-btn" type="button">Guardar/Calcular Resultados</button>
+            <button id="download-pdf" type="button">Descargar PDF</button>
+            <button id="download-excel" type="button">Descargar Excel</button>
+            <button id="reset-form-btn" type="button">Limpiar formulario</button>
+        </form>
+
+        <div id="results">
+            <h2>Resultados de <span id="display-name"></span></h2>
+
+            <div class="disc-graph" id="disc-graph">
+                <!-- Las barras se generarán dinámicamente con JavaScript -->
+            </div>
+
+            <div class="result-section">
+                <h3>Perfil DISC</h3>
+                <div id="profile-description" class="profile-description"></div>
+            </div>
+
+            <div class="result-section">
+                <h3>Detalle por Rasgo</h3>
+                <div id="trait-details"></div>
+            </div>
+
+            <div class="result-section">
+                <h3>Recomendaciones</h3>
+                <div id="recommendations"></div>
+            </div>
+        </div>
+
+        <!-- Modal de éxito -->
+        <div id="success-modal" class="modal">
+            <div class="modal-content">
+                <p>✅ Resultado calculado exitosamente.</p>
+                <button onclick="closeModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    <div class="floating-home-btn">
+        <a href="../index.html" title="Volver al inicio">
+          <i class="home-icon">🏠</i>
+        </a>
+    </div>
+    <script src="/disc-test/js/disc.js"></script>
+</body>
+
+</html>

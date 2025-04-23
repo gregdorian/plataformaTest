@@ -1,0 +1,279 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+  }
+
+  h1 {
+    color: #3498db;
+    text-align: center;
+  }
+
+  h2 {
+    color: #2c3e50;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 30px;
+  }
+
+  .intro-box {
+    border-left: 5px solid #3498db;
+    background: #ecf6fd;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .question {
+    margin-bottom: 0px;
+    border: 2px solid #9295bb;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .question.invalid {
+    border-color: #e74c3c;
+    background-color: #fef0ef;
+  }
+
+  .options {
+    margin-top: 7px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .question-text {
+    font-weight: bold;
+    margin-bottom: 7px;
+  }
+
+  .options label {
+    margin-right: 15px;
+    display: inline-block;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  #error-message {
+    color: #e74c3c;
+    font-weight: bold;
+    display: none;
+    margin-bottom: 15px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-right: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #2980b9;
+  }
+
+  #results {
+    margin-top: 40px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+    display: none;
+  }
+
+  .result-section {
+    margin-bottom: 20px;
+  }
+
+  .result-section span {
+    font-weight: bold;
+  }
+
+  /* Estilos para el modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  .modal-content button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .disc-traits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .trait-card {
+    width: 48%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .trait-card.D {
+    border-left: 4px solid #e74c3c;
+    background-color: #fdecea;
+  }
+
+  .trait-card.I {
+    border-left: 4px solid #f39c12;
+    background-color: #fef5e7;
+  }
+
+  .trait-card.S {
+    border-left: 4px solid #2ecc71;
+    background-color: #e8f8f0;
+  }
+
+  .trait-card.C {
+    border-left: 4px solid #3498db;
+    background-color: #ebf5fb;
+  }
+
+  .trait-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .disc-graph {
+    width: 100%;
+    height: 200px;
+    margin: 20px 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+  }
+
+  .graph-bar {
+    width: 20%;
+    text-align: center;
+  }
+
+  .bar {
+    width: 80%;
+    margin: 0 auto;
+    transition: height 0.5s ease;
+  }
+
+  .bar.D {
+    background-color: #e74c3c;
+  }
+
+  .bar.I {
+    background-color: #f39c12;
+  }
+
+  .bar.S {
+    background-color: #2ecc71;
+  }
+
+  .bar.C {
+    background-color: #3498db;
+  }
+
+  .bar-label {
+    margin-top: 5px;
+    font-weight: bold;
+  }
+
+  .profile-description {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+
+  .bar {
+    width: 100%;
+    min-height: 5px;
+    background-color: gray;
+    transition: height 0.3s ease;
+  }
+  .bar.D { background-color: #e74c3c; }
+  .bar.I { background-color: #f39c12; }
+  .bar.S { background-color: #2ecc71; }
+  .bar.C { background-color: #3498db; } 
+
+/* -- Agrega estos estilos en la sección de style del head */
+
+  .floating-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+  }
+
+  .floating-home-btn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .floating-home-btn a:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .home-icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+

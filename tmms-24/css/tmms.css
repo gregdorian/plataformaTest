@@ -1,0 +1,22 @@
+/* Add any TMMS-24 specific styles here */
+.question.invalid {
+    border-color: #e74c3c;
+    background-color: #fef0ef;
+}
+
+#results {
+    margin-top: 40px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+    display: none;
+}
+
+.result-section {
+    margin-bottom: 20px;
+}
+
+.result-section span {
+    font-weight: bold;
+}

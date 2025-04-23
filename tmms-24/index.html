@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Test TMMS-24</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tmms.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test TMMS-24</h1>
+        <p style="text-align:center; margin-top:-10px;">Evaluación de Estados Emocionales</p>
+        <div class="intro-box">
+            <p>A continuación encontrará algunas afirmaciones sobre emociones y sentimientos. Lea atentamente cada frase e
+                indique el grado de acuerdo o desacuerdo con respecto a las mismas.</p>
+            <p><strong>No hay respuestas correctas o incorrectas, ni buenas o malas. No emplee mucho tiempo en cada
+                    respuesta.</strong></p>
+            <p><strong>Escala de valoración:</strong></p>
+            <ol>
+                <li>Nada de acuerdo</li>
+                <li>Algo de acuerdo</li>
+                <li>Bastante de acuerdo</li>
+                <li>Muy de acuerdo</li>
+                <li>Totalmente de acuerdo</li>
+            </ol>
+        </div>
+        <form id="tmms-form">
+            <label for="participant-name"><strong>Nombre del participante:</strong></label>
+            <input id="participant-name" name="participant-name" placeholder="Escribe tu nombre" required="" type="text" />
+            <div id="questions-container"></div>
+            <p><strong>Género:</strong></p>
+            <label><input name="gender" type="radio" value="male" /> Hombre</label>
+            <label><input name="gender" type="radio" value="female" /> Mujer</label>
+            <div id="error-message" class="error-message"></div>
+            <button id="calculate-btn" type="button">Guardar/Calcular Resultados</button>
+            <button id="download-pdf" type="button">Descargar PDF</button>
+            <button id="download-excel" type="button">Descargar Excel</button>
+            <button id="reset-form-btn" type="button">Limpiar formulario</button>
+            <button id="show-results-btn" type="button">Ver Resultados Guardados</button>
+            <button id="graph-results-btn" onclick="location.href='../Graficas/graficastmms.html'" type="button">Graficar Resultados</button>
+        </form>
+
+        <div id="results">
+            <h2>Resultados de <span id="display-name"></span></h2>
+            <div class="result-section">
+                <h3>Percepción Emocional</h3>
+                <p>Puntuación: <span id="score-perception"></span></p>
+                <p><span id="desc-perception"></span></p>
+            </div>
+            <div class="result-section">
+                <h3>Comprensión de Sentimientos</h3>
+                <p>Puntuación: <span id="score-understanding"></span></p>
+                <p><span id="desc-understanding"></span></p>
+            </div>
+            <div class="result-section">
+                <h3>Regulación Emocional</h3>
+                <p>Puntuación: <span id="score-regulation"></span></p>
+                <p><span id="desc-regulation"></span></p>
+            </div>
+        </div>
+        <!-- LISTADO DE RESULTADOS -->
+        <div id="stored-results" style="margin-top: 40px; display: none;">
+            <h2>Resultados Guardados</h2>
+            <table border="1" cellpadding="10" style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Género</th>
+                        <th>Percepción</th>
+                        <th>Evaluación</th>
+                        <th>Comprensión</th>
+                        <th>Evaluación</th>
+                        <th>Regulación</th>
+                        <th>Evaluación</th>
+                    </tr>
+                </thead>
+                <tbody id="results-table-body"></tbody>
+            </table>
+        </div>
+
+
+        <!-- Modal de éxito -->
+        <div id="success-modal" class="modal">
+            <div class="modal-content">
+                <p>✅ Resultado guardado exitosamente.</p>
+                <button onclick="closeModal()">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <div class="floating-home-btn">
+        <a href="../index.html" title="Volver al inicio">
+          <i class="home-icon">🏠</i>
+        </a>
+    </div>
+    <script src="/tmms-24/js/tmms.js"></script>
+</body>
+
+</html>
