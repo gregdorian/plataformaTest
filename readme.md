@@ -34,11 +34,11 @@ Este proyecto es una plataforma web diseñada para realizar pruebas psicológica
 
 ## Captura de Pantalla
 
-![Captura de la Plataforma](screenshot.png)
+![Captura de la Plataforma](pruebasSico.png)
 
 ## Autor
 
-Desarrollado por [Tu Nombre].
+Desarrollado por German E L.
 
 ## Licencia
 
