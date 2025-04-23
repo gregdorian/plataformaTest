@@ -246,3 +246,6 @@
 
  document.getElementById("stored-results").style.display = "block";
 });
+document.getElementById('show-graph-btn').addEventListener('click', function () {
+  window.location.href = '../graficas/index.html';
+});
