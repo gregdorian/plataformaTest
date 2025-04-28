@@ -178,48 +178,7 @@
     document.getElementById("show-results-btn").addEventListener("click", async () => {
   const { data, error } = await supabaseClient.from('resultados_tmms').select('*');
  
-  // document.getElementById("graph-results-btn").addEventListener("click", () => {
-  //   console.log("Botón de gráficas de resultados presionado");
-  //   const ctx = document.getElementById('results-chart').getContext('2d');
-  // });
-  // const chart = new Chart(ctx, {
-  //   type: 'bar',
-  //   data: {
-  //     labels: data.map(row => row.nombre),
-  //     datasets: [
-  //       {
-  //         label: 'Percepción Emocional',
-  //         data: data.map(row => row.percepcion),
-  //         backgroundColor: 'rgba(255, 99, 132, 0.2)',
-  //         borderColor: 'rgba(255, 99, 132, 1)',
-  //         borderWidth: 1
-  //       },
-  //       {
-  //         label: 'Comprensión de Sentimientos',
-  //         data: data.map(row => row.comprension),
-  //         backgroundColor: 'rgba(54, 162, 235, 0.2)',
-  //         borderColor: 'rgba(54, 162, 235, 1)',
-  //         borderWidth: 1
-  //       },
-  //       {
-  //         label: 'Regulación Emocional',
-  //         data: data.map(row => row.regulacion),
-  //         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-  //         borderColor: 'rgba(75, 192, 192, 1)',
-  //         borderWidth: 1
-  //       }
-  //     ]
-  //   },
-  //   options: {
-  //     scales: {
-  //       yAxes: [{
-  //         ticks: {
-  //           beginAtZero:true
-  //         }
-  //       }]
-  //     }
-  //   }
-  // });
+  
  if (error) {
    console.error("Error al obtener resultados:", error);
    alert("No se pudieron obtener los resultados.");

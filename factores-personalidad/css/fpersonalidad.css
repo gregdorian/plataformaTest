@@ -1,0 +1,172 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+  }
+
+  h1 {
+    color: #3498db;
+    text-align: center;
+  }
+
+  h2 {
+    color: #2c3e50;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 30px;
+  }
+
+  .intro-box {
+    border-left: 5px solid #3498db;
+    background: #ecf6fd;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .question {
+    margin-bottom: 20px;
+    border: 2px solid transparent;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .question.invalid {
+    border-color: #e74c3c;
+    background-color: #fef0ef;
+  }
+
+  .options {
+    margin-top: 8px;
+  }
+
+  .options label {
+    margin-right: 15px;
+    display: inline-block;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  #error-message {
+    color: #e74c3c;
+    font-weight: bold;
+    display: none;
+    margin-bottom: 15px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-right: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #2980b9;
+  }
+
+  #results {
+    margin-top: 40px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+    display: none;
+  }
+
+  .result-section {
+    margin-bottom: 20px;
+  }
+
+  .result-section span {
+    font-weight: bold;
+  }
+
+  .progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .progress {
+    height: 20px;
+    background-color: #3498db;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  }
+
+  /* Estilos para el modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  .modal-content button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
