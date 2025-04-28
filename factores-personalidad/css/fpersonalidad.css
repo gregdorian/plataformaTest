@@ -170,3 +170,63 @@ body {
   tr:nth-child(even) {
     background-color: #f9f9f9;
   }
+/* Responsive styles */
+  .results-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+  
+  #results-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px; /* Asegura que en pantallas pequeñas se active el scroll */
+  }
+  
+  #results-table th,
+  #results-table td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+    text-align: left;
+  }
+  
+  #results-table th {
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  #results-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #results-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Columnas de interpretación más anchas */
+  .interpretation-col {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Estilos para pantallas medianas */
+  @media screen and (max-width: 1200px) {
+    .interpretation-col {
+      max-width: 150px;
+    }
+  }
+  
+  /* Indicador de scroll en móviles */
+  @media screen and (max-width: 768px) {
+    .scroll-indicator {
+      display: block;
+      text-align: center;
+      color: #555;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+  }

@@ -243,26 +243,39 @@
 
    // Guardar en Supabase
    supabaseClient
-     .from('resultados_personalidad')
-     .insert([{
-       nombre: name,
-       genero: gender,
-       sociabilidad: sociability,
-       estabilidad: stability,
-       apertura: openness,
-       motivacion: motivation,
-       valores: values,
-       cognicion: cognition
-     }])
+   .from('resultados_personalidad')
+   .insert([{
+     nombre: name,
+     genero: gender,
+     sociabilidad: sociability,
+     sociabilidad_interpretation: interpretDimension(sociability, "sociability"),
+     estabilidad: stability,
+     estabilidad_interpretation: interpretDimension(stability, "stability"),
+     apertura: openness,
+     apertura_interpretation: interpretDimension(openness, "openness"),
+     motivacion: motivation,
+     motivacion_interpretation: interpretDimension(motivation, "motivation"),
+     valores: values,
+     valores_interpretation: interpretDimension(values, "values"),
+     cognicion: cognition,
+     cognicion_interpretation: interpretDimension(cognition, "cognition")
+   }])
      .then(response => {
        if (response.error) {
          console.error('Error al guardar en Supabase:', response.error);
+              // Mostrar mensaje de error al usuario
+         errorMsg.textContent = `Error al guardar: ${response.error.message}`;
+         errorMsg.style.display = "block";
        } else {
          console.log('Resultado guardado en Supabase.');
          // Mostrar el modal de éxito
          openModal();
        }
      });
+    //  .catch(err => {
+    //   console.error('Error de conexión:', err);
+    //   errorMsg.textContent = "Error de conexión con la base de datos.";
+    //   errorMsg.style.display = "block";
  });
 
  document.getElementById("download-pdf").addEventListener("click", () => {
@@ -322,18 +335,24 @@
    resultsTableBody.innerHTML = "";
    
    data.forEach(result => {
-     const row = `<tr>
-       <td>${result.nombre}</td>
-       <td>${result.genero}</td>
-       <td>${result.sociabilidad}</td>
-       <td>${result.estabilidad}</td>
-       <td>${result.apertura}</td>
-       <td>${result.motivacion}</td>
-       <td>${result.valores}</td>
-       <td>${result.cognicion}</td>
-     </tr>`;
-     resultsTableBody.innerHTML += row;
-   });
+    const row = `<tr>
+      <td>${result.nombre}</td>
+      <td>${result.genero}</td>
+      <td>${result.sociabilidad}</td>
+      <td class="interpretation-col" title="${result.sociabilidad_interpretation || ''}">${result.sociabilidad_interpretation ? result.sociabilidad_interpretation.substring(0, 30) + '...' : ''}</td>
+      <td>${result.estabilidad}</td>
+      <td class="interpretation-col" title="${result.estabilidad_interpretation || ''}">${result.estabilidad_interpretation ? result.estabilidad_interpretation.substring(0, 30) + '...' : ''}</td>
+      <td>${result.apertura}</td>
+      <td class="interpretation-col" title="${result.apertura_interpretation || ''}">${result.apertura_interpretation ? result.apertura_interpretation.substring(0, 30) + '...' : ''}</td>
+      <td>${result.motivacion}</td>
+      <td class="interpretation-col" title="${result.motivacion_interpretation || ''}">${result.motivacion_interpretation ? result.motivacion_interpretation.substring(0, 30) + '...' : ''}</td>
+      <td>${result.valores}</td>
+      <td class="interpretation-col" title="${result.valores_interpretation || ''}">${result.valores_interpretation ? result.valores_interpretation.substring(0, 30) + '...' : ''}</td>
+      <td>${result.cognicion}</td>
+      <td class="interpretation-col" title="${result.cognicion_interpretation || ''}">${result.cognicion_interpretation ? result.cognicion_interpretation.substring(0, 30) + '...' : ''}</td>
+    </tr>`;
+    resultsTableBody.innerHTML += row;
+  });
    
    document.getElementById("stored-results").style.display = "block";
  });

@@ -8,8 +8,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-   <link rel="stylesheet" href="/factores-personalidad/css/fpersonalidad.css">
-   <link rel="stylesheet" href="/css/style.css">
+   <link rel="stylesheet" href="../factores-personalidad/css/fpersonalidad.css">
+   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -105,22 +105,30 @@
     </div>
     
     <!-- LISTADO DE RESULTADOS -->
-    <div id="stored-results" style="margin-top: 40px; display: none;">
-      <h2>Resultados Guardados</h2>
-      <table border="1" cellpadding="10" style="width:100%; border-collapse: collapse;">
+    <div class="results-container">
+      <div class="scroll-indicator">Desliza horizontalmente para ver todos los datos</div>
+      <table id="results-table">
         <thead>
           <tr>
             <th>Nombre</th>
             <th>Género</th>
             <th>Sociabilidad</th>
+            <th class="interpretation-col">Interpretación</th>
             <th>Estabilidad</th>
+            <th class="interpretation-col">Interpretación</th>
             <th>Apertura</th>
+            <th class="interpretation-col">Interpretación</th>
             <th>Motivación</th>
+            <th class="interpretation-col">Interpretación</th>
             <th>Valores</th>
+            <th class="interpretation-col">Interpretación</th>
             <th>Cognición</th>
+            <th class="interpretation-col">Interpretación</th>
           </tr>
         </thead>
-        <tbody id="results-table-body"></tbody>
+        <tbody id="results-table-body">
+          <!-- Aquí se cargarán los resultados dinámicamente -->
+        </tbody>
       </table>
     </div>
     
@@ -138,7 +146,7 @@
       <i class="home-icon">🏠</i>
     </a>
 </div>
-  <script src="/factores-personalidad/js/fpersonalidad.js"></script>
+  <script src="../factores-personalidad/js/fpersonalidad.js"></script>
 </body>
 </html>
 <!-- Fin del archivo test-factores-personalidad/index.html -->
