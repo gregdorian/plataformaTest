@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Test 16 PF - Cuestionario de Personalidad</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="../16personfactor/css/16pfstyle.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Cuestionario de Perfil de Personalidad 16 PF</h1>
+    <p style="text-align:center; margin-top:-10px;">Evaluación de los 16 Factores de Personalidad</p>
+    <div class="intro-box">
+      <p>A continuación encontrará una serie de preguntas sobre sus preferencias, actitudes y comportamientos. Lea atentamente cada pregunta y seleccione la respuesta que mejor describa su forma de ser.</p>
+      <p><strong>No hay respuestas correctas o incorrectas. Responda con sinceridad y de acuerdo a cómo es usted realmente, no como le gustaría ser.</strong></p>
+      <p><strong>Por favor, responda a todas las preguntas.</strong></p>
+    </div>
+    <form id="pf16-form">
+      <label for="participant-name"><strong>Nombre del participante:</strong></label>
+      <input id="participant-name" name="participant-name" placeholder="Escribe tu nombre" required="" type="text" />
+      <div id="questions-container"></div>
+      <p><strong>Género:</strong></p>
+      <label><input name="gender" type="radio" value="male" required /> Hombre</label>
+      <label><input name="gender" type="radio" value="female" required /> Mujer</label>
+      <div id="error-message"></div>
+      <div class="navigation-buttons">
+        <button id="prev-btn" type="button" style="display: none;">Anterior</button>
+        <button id="next-btn" type="button">Siguiente</button>
+        <button id="calculate-btn" type="button" style="display: none;">Calcular Resultados</button>
+      </div>
+      <button id="download-pdf" type="button" style="display: none;">Descargar PDF</button>
+      <button id="download-excel" type="button" style="display: none;">Descargar Excel</button>
+      <button id="reset-form-btn" type="button" style="display: none;">Limpiar formulario</button>
+      <button id="show-results-btn" type="button" class="no-print">Ver Resultados Guardados</button>
+    </form>
+
+    <div id="results" style="display: none;">
+      <h2>Resultados de <span id="display-name"></span></h2>
+      
+      <div class="factor-container" id="factors-results"></div>
+      
+      <h3>Interpretación de los Factores</h3>
+      <table class="interpretation-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>Bajo (1-3)</th>
+            <th>Medio (4-6)</th>
+            <th>Alto (7-10)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A - Afectividad</td>
+            <td>Reservado, impersonal, distante, crítico</td>
+            <td>Moderadamente cálido y abierto</td>
+            <td>Afable, cálido, atento a los demás</td>
+          </tr>
+          <tr>
+            <td>B - Razonamiento</td>
+            <td>Concreto, menos inteligente</td>
+            <td>Inteligencia promedio</td>
+            <td>Abstracto, brillante, inteligente</td>
+          </tr>
+          <tr>
+            <td>C - Estabilidad</td>
+            <td>Emocionalmente reactivo, cambiante</td>
+            <td>Moderadamente estables</td>
+            <td>Emocionalmente estable, maduro</td>
+          </tr>
+          <tr>
+            <td>E - Dominancia</td>
+            <td>Sumiso, humilde, obediente</td>
+            <td>Moderadamente asertivo</td>
+            <td>Dominante, asertivo, competitivo</td>
+          </tr>
+          <tr>
+            <td>F - Animación</td>
+            <td>Solemn, serio, taciturno</td>
+            <td>Moderadamente animado</td>
+            <td>Entusiasta, alegre, animado</td>
+          </tr>
+          <tr>
+            <td>G - Atención a normas</td>
+            <td>Despreocupado por las normas</td>
+            <td>Moderadamente concienzudo</td>
+            <td>Concienzudo, moralista, perseverante</td>
+          </tr>
+          <tr>
+            <td>H - Atrevimiento</td>
+            <td>Tímido, cohibido, sensible</td>
+            <td>Moderadamente atrevido</td>
+            <td>Socialmente atrevido, desinhibido</td>
+          </tr>
+          <tr>
+            <td>I - Sensibilidad</td>
+            <td>Duro, realista, autosuficiente</td>
+            <td>Moderadamente sensibles</td>
+            <td>Sensible, dependiente, delicado</td>
+          </tr>
+          <tr>
+            <td>L - Vigilancia</td>
+            <td>Confianza en los demás</td>
+            <td>Moderadamente vigilantes</td>
+            <td>Desconfiado, suspicaz</td>
+          </tr>
+          <tr>
+            <td>M - Abstracción</td>
+            <td>Práctico, convencional</td>
+            <td>Moderadamente imaginativos</td>
+            <td>Imaginativo, distraído</td>
+          </tr>
+          <tr>
+            <td>N - Privacidad</td>
+            <td>Franco, directo, ingenuo</td>
+            <td>Moderadamente discretos</td>
+            <td>Astuto, discreto, mundano</td>
+          </tr>
+          <tr>
+            <td>O - Aprensión</td>
+            <td>Seguro de sí mismo, confiado</td>
+            <td>Moderadamente preocupados</td>
+            <td>Aprensivo, inseguro, culpable</td>
+          </tr>
+          <tr>
+            <td>Q1 - Apertura al cambio</td>
+            <td>Conservador, tradicional</td>
+            <td>Moderadamente abiertos</td>
+            <td>Experimentador, liberal</td>
+          </tr>
+          <tr>
+            <td>Q2 - Autosuficiencia</td>
+            <td>Grupo-dependiente, gregario</td>
+            <td>Moderadamente independientes</td>
+            <td>Autosuficiente, individualista</td>
+          </tr>
+          <tr>
+            <td>Q3 - Perfeccionismo</td>
+            <td>Tolerante al desorden, flexible</td>
+            <td>Moderadamente organizados</td>
+            <td>Perfeccionista, compulsivo</td>
+          </tr>
+          <tr>
+            <td>Q4 - Tensión</td>
+            <td>Relajado, tranquilo, paciente</td>
+            <td>Moderadamente tensos</td>
+            <td>Tenso, impaciente, frustrado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- LISTADO DE RESULTADOS -->
+    <div id="stored-results" style="margin-top: 40px; display: none;">
+      <h2>Resultados Guardados</h2>
+      <table border="1" cellpadding="10" style="width:100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Género</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>E</th>
+            <th>F</th>
+            <th>G</th>
+            <th>H</th>
+            <th>I</th>
+            <th>L</th>
+            <th>M</th>
+            <th>N</th>
+            <th>O</th>
+            <th>Q1</th>
+            <th>Q2</th>
+            <th>Q3</th>
+            <th>Q4</th>
+          </tr>
+        </thead>
+        <tbody id="results-table-body"></tbody>
+      </table>
+    </div>
+
+    <!-- Modal de éxito -->
+    <div id="success-modal" class="modal">
+      <div class="modal-content">
+        <p>✅ Resultado guardado exitosamente.</p>
+        <button onclick="closeModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+  <div class="floating-home-btn">
+    <a href="../index.html" title="Volver al inicio">
+      <i class="home-icon">🏠</i>
+    </a>
+</div>
+  <script type="text/javascript" src="../16personfactor/js/16pf_script.js"></script>
+  
+</body>
+</html>
